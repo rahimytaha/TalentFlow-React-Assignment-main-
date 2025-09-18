@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from '../Dashboard/Sidebar';
-import Header from '../Header';
+import Header from '../Dashboard/Header';
 import ImageHeader from './image.png'
 import UserIcon from '../../assets/images/userIcon.png'
 import axios from 'axios';
@@ -115,7 +115,7 @@ const CandidateListings = () => {
         <div className="flex-1 flex flex-col">
             <Header />
 
-            <div className="font-sans w-full  bg-gray-50 min-h-screen">
+            <div className="font-sans w-full mt-16   bg-gray-50 min-h-screen">
                 {/* Header */}
                 <div style={{ backgroundColor: "#E0E7FF", borderColor: "#E5E7EB" }} className="px-8 mx-5   mt-5 mb-2   py-6 border rounded-xl  ">
                     <div className="flex justify-between items-center">
@@ -287,7 +287,7 @@ const CandidateListings = () => {
 
 
             </div>
-            <div ref={observerRef} style={{ height: '10px',backgroundColor:"#000" }} >tt</div>
+            <div ref={observerRef} style={{ height: '10px'}} ></div>
         </div>
         
     </div >

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route ,NavLink} from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <Routes>
-       <Route
+      <Route
         path="/"
         element={
           <div className="flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
@@ -46,9 +46,17 @@ export default function App() {
       <Route
         path="/login"
         element={<LoginPage open={open} setOpen={setOpen} />}
-      /> 
+      />
       <Route
         path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/jobs"
         element={
           <PrivateRoute>
             <Dashboard />
@@ -59,13 +67,13 @@ export default function App() {
         path="/Candidates"
         element={
           <PrivateRoute>
-            <CandidateListings/>
+            <CandidateListings />
           </PrivateRoute>
         }
       />
       <Route path="/pricing" element={<PricingPage />} />
-      <Route path="/create-job" element={<CreateJob />} /> 
-      <Route path="/edit-job/:id" element={<CreateJob mode="edit" />} /> 
+      <Route path="/create-job" element={<CreateJob />} />
+      <Route path="/edit-job/:id" element={<CreateJob mode="edit" />} />
       <Route path="/jobs/:id" element={<JobDetails />} />
     </Routes>
 
