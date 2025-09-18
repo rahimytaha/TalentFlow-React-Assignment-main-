@@ -5,7 +5,7 @@ import App from "./App";
 import "./index.css";
 import CandidateListings from "./components/Candidates/ListCandidates";
 import('../public/browser').then(({ worker }) => {
-  worker.start();
+  worker.start({ onUnhandledRequest: 'warn' });
 });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>

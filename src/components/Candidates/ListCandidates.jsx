@@ -10,30 +10,55 @@ const STORAGE_KEY_CANDIDATES = 'talentflow_candidates';
 
 
 const CandidateListings = () => {
-
-
     const [candidates, setCandidates] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [filterOption, setfilterOption] = useState({ "jobTitle": [], "skills": [], "location": [], "salary": [] });
     const [totalCount, setTotalCount] = useState(0);
+    const [page, setPage] = useState(1);
     const [filterStage, setFilterStage] = useState('');
     const [sortBy, setSortBy] = useState('bestMatch');
     const [selectedIds, setSelectedIds] = useState([]);
     const observerRef = useRef(null); // Ref for the bottom element
     const lastScrollY = useRef(0); // Track scroll direction
+    const [jobTitle, setjobTitle] = useState(undefined);
+    const [salary, setsalary] = useState(undefined);
+    const [lacation, setlacation] = useState(undefined);
+    const [experience, setexperience] = useState(undefined);
+    const [skill, setskill] = useState(undefined);
+
+
+
 
     useEffect(() => {
-        setTimeout(() => {
-            getApi()
-        }, 200);
 
-    }, [searchTerm,]);
+        getApi()
 
+
+    }, [searchTerm, skill, experience, page, jobTitle, lacation, salary]);
+    useEffect(() => {
+
+        getApiFilterOption()
+
+
+    }, []);
+    useEffect(() => {
+
+        console.log("chancges", filterOption)
+
+
+    }, [filterOption]);
     const getApi = async () => {
-        const data = await axios.get(`http://localhost:3001/api/candidates?search=${searchTerm}`)
-        setTotalCount(data.data?.total)
-        setCandidates(data.data?.candidates)
+        const data = await axios.get(`http://localhost:3000/api/candidates`, { params: { searchTerm, skill, experience, page, jobTitle, lacation, salary } })
+        // setTotalCount(data.data?.total)
+        setCandidates(data.data?.data)
     }
 
+    const getApiFilterOption = async () => {
+        const data = await axios.get(`http://localhost:3000/api/candidatesFilterOption`)
+
+        setfilterOption(data.data)
+        console.log(data.data)
+    }
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     };
@@ -53,10 +78,10 @@ const CandidateListings = () => {
     };
 
     const handleSelectAll = () => {
-        if (selectedIds.length === filteredCandidates.length) {
+        if (selectedIds.length === candidates.length) {
             setSelectedIds([]);
         } else {
-            setSelectedIds(filteredCandidates.map(c => c.id));
+            setSelectedIds(candidates.map(c => c.id));
         }
     };
 
@@ -68,16 +93,7 @@ const CandidateListings = () => {
         }
     };
 
-    const filteredCandidates = candidates?.filter(c => {
-        const matchesSearch = c.name.toLowerCase().includes(searchTerm.toLowerCase()) || c.email.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesStage = !filterStage || c.stage === filterStage;
-        return matchesSearch && matchesStage;
-    }) || [];
 
-    const sortedCandidates = [...filteredCandidates].sort((a, b) => {
-        if (sortBy === 'bestMatch') return b.experience - a.experience; // Simple sorting by experience as proxy for best match
-        return 0; // Default no sorting
-    });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -88,9 +104,10 @@ const CandidateListings = () => {
             (entries) => {
                 const isScrollingDown = window.scrollY > lastScrollY.current;
                 if (entries[0].isIntersecting && isScrollingDown) {
-                // alert()
+                    // alert()
+                    // alert()
                 } else {
-                    console.log("first")
+                    setPage(e => e + 1)
                 }
             },
             { threshold: 0.1 }
@@ -165,30 +182,33 @@ const CandidateListings = () => {
                             </svg>
 
                         </div>
-                        <select
-                            value={filterStage}
-                            onChange={handleFilterStage}
-                            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                            <option value="">All Stages</option>
-                            {stages.map(stage => (
-                                <option key={stage} value={stage}>{stage.charAt(0).toUpperCase() + stage.slice(1)}</option>
-                            ))}
+                        <select onChange={e => setjobTitle(e.target.value)} className="px-4 py-2 border w-32  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value={""}>Job Title</option>
+                            {filterOption.jobTitle.map(el => <option value={el}>{el}</option>)}
+                        </select>
+                        <select onChange={e => setexperience(e.target.value)} className="px-4 py-2 w-32  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value={""}>Experience</option>
+                            {filterOption.jobTitle.map(el => <option value={el}>{el}</option>)}
+                        </select>
+                        <select onChange={e => setskill(e.target.value)} className="px-4 py-2 w-32  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value={""}>Skills</option>
+                            {filterOption.skills.map(el => <option value={el}>{el}</option>)}
+                        </select>
+                        <select onChange={e => setlacation(e.target.value)} className="px-4 py-2 w-32  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value={""}>Location</option>
+                            {filterOption.location.map(el => <option value={el}>{el}</option>)}
+                        </select>
+                        <select onChange={e => setsalary(e.target.value)} className="px-4 py-2 w-32  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value={""}>Salary</option>
+                            {filterOption.salary.map(el => <option value={el}>{el}</option>)}
                         </select>
 
-                        <select className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option>Job Title</option>
-                            <option>Experience</option>
-                            <option>Skills</option>
-                            <option>Location</option>
-                            <option>Salary</option>
-                        </select>
                     </div>
 
                 </div>
                 <div className='"p x-8 px-5 pt-3 pb-1 bg-white border-b border-gray-200'>
                     <div className="flex justify-between items-center mb-4">
-                        <span className="text-gray-700 font-semibold text-lg ">1,000 Candidates Found <input className='mx-2 ' type="checkbox" onClick={handleSelectAll} id='selectAllInp' /><label className='text-sm font-normal ' htmlFor="selectAllInp">{selectedIds.length === filteredCandidates.length ? 'Deselect All' : 'Select All'}</label></span>
+                        <span className="text-gray-700 font-semibold text-lg ">1,000 Candidates Found <input className='mx-2 ' type="checkbox" onClick={handleSelectAll} id='selectAllInp' /><label className='text-sm font-normal ' htmlFor="selectAllInp">{selectedIds.length === candidates.length ? 'Deselect All' : 'Select All'}</label></span>
                         <div className="flex gap-2">
                             <button
                                 onClick={handleDeleteSelected}
@@ -213,9 +233,8 @@ const CandidateListings = () => {
 
                 {/* Candidates List */}
                 <div className="p x-8 mt-6  px-5 py-6 bg-white">
-
-                    {sortedCandidates.map(candidate => (
-                        <div key={candidate.id} className="border border-gray-200 p-6 mb-4 rounded-lg flex items-start bg-white shadow-sm hover:shadow-md transition-shadow">
+                    {candidates.map(candidate => (
+                        <div className="border border-gray-200 p-6 mb-4 rounded-lg flex items-start bg-white shadow-sm hover:shadow-md transition-shadow">
                             <input
                                 type="checkbox"
                                 checked={selectedIds.includes(candidate.id)}
@@ -282,14 +301,13 @@ const CandidateListings = () => {
 
                         </div>
                     ))}
-                    {sortedCandidates.length === 0 && <p className="text-gray-500 text-center py-8">No candidates found.</p>}
                 </div>
 
 
             </div>
-            <div ref={observerRef} style={{ height: '10px'}} ></div>
+            <div ref={observerRef} style={{ height: '10px' }} ></div>
         </div>
-        
+
     </div >
 
 
