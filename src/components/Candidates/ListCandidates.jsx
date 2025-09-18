@@ -4,6 +4,8 @@ import Header from '../Dashboard/Header';
 import ImageHeader from './image.png'
 import UserIcon from '../../assets/images/userIcon.png'
 import axios from 'axios';
+import {  NavLink } from "react-router-dom";
+
 const stages = ['applied', 'screen', 'tech', 'offer', 'hired', 'rejected'];
 
 const STORAGE_KEY_CANDIDATES = 'talentflow_candidates';
@@ -288,12 +290,12 @@ const CandidateListings = () => {
                                 <p className="text-sm text-gray-600 mb-1 flex gap-2">{candidate.skills.map(el => <span style={{ color: "#1E40AF", backgroundColor: "#DBEAFE", borderColor: "#E5E7EB" }} className='block border p-2 pt-1.5 rounded  '>{el}</span>)}</p>
                                 <p style={{ color: "#374151" }} className='font-normal text-sm '>{candidate.describe}</p>
                                 <p className="text-xs text-gray-500 mt-4 flex justify-between items-center ">
-                                    <p>Last active: {candidate.lastActive}</p>   <button
-                                        className="w-28 h-9 text-sm font-normal  block  bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        onClick={() => alert(`Viewing profile for ${candidate.name}`)}
+                                    <p>Last active: {candidate.lastActive}</p>   <NavLink to={"/Candidates/"+candidate.id}
+                                        className="w-28 h-9 text-sm font-normal  block  bg-blue-600 text-white text-center leading-8 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        
                                     >
                                         View Profile
-                                    </button>
+                                    </NavLink>
                                 </p>
 
                             </div>
