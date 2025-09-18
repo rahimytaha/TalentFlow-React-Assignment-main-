@@ -29,7 +29,7 @@ const CandidateListings = () => {
     }, [searchTerm,]);
 
     const getApi = async () => {
-        const data = await axios.get(`/api/candidates?search=${searchTerm}`)
+        const data = await axios.get(`http://localhost:3001/api/candidates?search=${searchTerm}`)
         setTotalCount(data.data?.total)
         setCandidates(data.data?.candidates)
     }
@@ -68,11 +68,11 @@ const CandidateListings = () => {
         }
     };
 
-    const filteredCandidates = candidates.filter(c => {
+    const filteredCandidates = candidates?.filter(c => {
         const matchesSearch = c.name.toLowerCase().includes(searchTerm.toLowerCase()) || c.email.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesStage = !filterStage || c.stage === filterStage;
         return matchesSearch && matchesStage;
-    });
+    }) || [];
 
     const sortedCandidates = [...filteredCandidates].sort((a, b) => {
         if (sortBy === 'bestMatch') return b.experience - a.experience; // Simple sorting by experience as proxy for best match
