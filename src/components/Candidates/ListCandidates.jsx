@@ -1,34 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from '../Dashboard/Sidebar';
 import Header from '../Header';
 import ImageHeader from './image.png'
 import UserIcon from '../../assets/images/userIcon.png'
+import axios from 'axios';
 const stages = ['applied', 'screen', 'tech', 'offer', 'hired', 'rejected'];
 
 const STORAGE_KEY_CANDIDATES = 'talentflow_candidates';
 
-const initialCandidates = [
-    { id: 1, name: 'Sarah Chen', email: 'sarah.chen@example.com', describe: "Experienced full-stack engineer with expertise in building scalable web applications. Previously at Google , looking for  IC roles at growth-stage companies.", stage: 'applied', location: 'San Francisco, CA', experience: 8, salary: '$140k-$160k', skills: ['React', 'Node.js', 'TypeScript', 'AWS'], lastActive: '2 days ago', company: 'Google' },
-    { id: 2, name: 'Marcus Johnson', email: 'marcus.johnson@example.com', describe: "Experienced full-stack engineer with expertise in building scalable web applications. Previously at Google , looking for  IC roles at growth-stage companies.", stage: 'screen', location: 'New York, NY', experience: 5, salary: '$120k-$140k', skills: ['Figma', 'Design Systems'], lastActive: '1 week ago', company: 'Instagram' },
-    { id: 3, name: 'Priya Patel', email: 'priya.patel@example.com', describe: "Experienced full-stack engineer with expertise in building scalable web applications. Previously at Google , looking for  IC roles at growth-stage companies.", stage: 'tech', location: 'Remote', experience: 6, salary: '$130k-$150k', skills: ['Python', 'Machine Learning', 'TensorFlow', 'SQL'], lastActive: '3 days ago', company: 'Netflix' },
-    { id: 4, name: 'Alex Rodriguez', email: 'alex.rodriguez@example.com', describe: "Experienced full-stack engineer with expertise in building scalable web applications. Previously at Google , looking for  IC roles at growth-stage companies.", stage: 'offer', location: 'Austin, TX', experience: 7, salary: '$135k-$155k', skills: ['DevOps', 'Kubernetes', 'CI/CD'], lastActive: '1 month ago', company: 'Tesla' },
-    { id: 5, name: 'Emma Thompson', email: 'emma.thompson@example.com', describe: "Experienced full-stack engineer with expertise in building scalable web applications. Previously at Google , looking for  IC roles at growth-stage companies.", stage: 'hired', location: 'London, UK', experience: 9, salary: '$150k-$170k', skills: ['Product Strategy', 'Analytics', 'A/B Testing'], lastActive: '5 days ago', company: 'Amazon' },
-];
 
 const CandidateListings = () => {
 
-    const getFromStorage = () => JSON.parse(localStorage.getItem(STORAGE_KEY_CANDIDATES));
-    const [candidates, setCandidates] = useState(() => getFromStorage() || initialCandidates);
+
+    const [candidates, setCandidates] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [totalCount, setTotalCount] = useState(0);
     const [filterStage, setFilterStage] = useState('');
     const [sortBy, setSortBy] = useState('bestMatch');
     const [selectedIds, setSelectedIds] = useState([]);
+    const observerRef = useRef(null); // Ref for the bottom element
+    const lastScrollY = useRef(0); // Track scroll direction
 
     useEffect(() => {
-        saveToStorage(candidates);
-    }, [candidates]);
+        setTimeout(() => {
+            getApi()
+        }, 200);
 
-    const saveToStorage = (data) => localStorage.setItem(STORAGE_KEY_CANDIDATES, JSON.stringify(data));
+    }, [searchTerm,]);
+
+    const getApi = async () => {
+        const data = await axios.get(`/api/candidates?search=${searchTerm}`)
+        setTotalCount(data.data?.total)
+        setCandidates(data.data?.candidates)
+    }
 
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
@@ -75,13 +79,45 @@ const CandidateListings = () => {
         return 0; // Default no sorting
     });
 
+    useEffect(() => {
+        const handleScroll = () => {
+            lastScrollY.current = window.scrollY; // Update scroll position
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const isScrollingDown = window.scrollY > lastScrollY.current;
+                if (entries[0].isIntersecting && isScrollingDown) {
+                // alert()
+                } else {
+                    console.log("first")
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (observerRef.current) {
+            observer.observe(observerRef.current);
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            if (observerRef.current) {
+                observer.unobserve(observerRef.current);
+            }
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+
     return <div className="flex min-h-screen bg-gray-50">
         <Sidebar />
         <div className="flex-1 flex flex-col">
             <Header />
-            <div className="font-sans w-full px-5   bg-gray-50 min-h-screen">
+
+            <div className="font-sans w-full  bg-gray-50 min-h-screen">
                 {/* Header */}
-                <div style={{ backgroundColor: "#E0E7FF", borderColor: "#E5E7EB" }} className="px-8 mt-5  py-6 border rounded-xl  ">
+                <div style={{ backgroundColor: "#E0E7FF", borderColor: "#E5E7EB" }} className="px-8 mx-5   mt-5 mb-2   py-6 border rounded-xl  ">
                     <div className="flex justify-between items-center">
                         <div>
                             <h2 className="text-2xl font-bold text-gray-900 mb-2">Candidate Listings</h2>
@@ -96,7 +132,7 @@ const CandidateListings = () => {
                 </div>
 
                 {/* Search and Filters */}
-                <div className="p x-8 py-6 bg-white border-b border-gray-200">
+                <div className="p x-8 px-5 py-6 bg-white border-b border-gray-200">
 
                     <div className="flex flex-col md:flex-row gap-4 mb-4">
                         <input
@@ -113,17 +149,21 @@ const CandidateListings = () => {
                     </div>
                     <div className="flex gap-4">
 
-                        <div className='py-2 px-1 '>
-                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_176_9647)">
-                                    <path d="M1.09591 2.20965C1.32794 1.71746 1.82013 1.40457 2.36505 1.40457H17.5526C18.0975 1.40457 18.5897 1.71746 18.8217 2.20965C19.0537 2.70184 18.9834 3.28192 18.6389 3.70379L12.2088 11.5612V16.0296C12.2088 16.455 11.9697 16.8452 11.5865 17.035C11.2033 17.2249 10.7498 17.1862 10.4088 16.9296L8.1588 15.2421C7.87403 15.0311 7.7088 14.6971 7.7088 14.3421V11.5612L1.27521 3.70027C0.934191 3.28192 0.860363 2.69832 1.09591 2.20965Z" fill="#ADAEBC" />
+                        <div className='py-0.5 px-1 '>
+                            <svg width="36" height="35" viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.8994 0.0295715C32.3177 0.0295715 35.8994 3.61129 35.8994 8.02957V26.97C35.8994 31.3883 32.3177 34.97 27.8994 34.97H8.95898C4.54071 34.97 0.958984 31.3883 0.958984 26.97V8.02957C0.958984 3.61129 4.54071 0.0295715 8.95898 0.0295715H27.8994Z" fill="#F5F5F5" />
+                                <path d="M27.8994 0.0295715C32.3177 0.0295715 35.8994 3.61129 35.8994 8.02957V26.97C35.8994 31.3883 32.3177 34.97 27.8994 34.97H8.95898C4.54071 34.97 0.958984 31.3883 0.958984 26.97V8.02957C0.958984 3.61129 4.54071 0.0295715 8.95898 0.0295715H27.8994Z" stroke="#E5E7EB" />
+                                <path d="M23.959 27.0296H8.95898V3.02957H23.959V27.0296Z" stroke="#E5E7EB" />
+                                <g clip-path="url(#clip0_176_9645)">
+                                    <path d="M9.09591 9.20965C9.32794 8.71746 9.82013 8.40457 10.3651 8.40457H25.5526C26.0975 8.40457 26.5897 8.71746 26.8217 9.20965C27.0537 9.70184 26.9834 10.2819 26.6389 10.7038L20.2088 18.5612V23.0296C20.2088 23.455 19.9697 23.8452 19.5865 24.035C19.2033 24.2249 18.7498 24.1862 18.4088 23.9296L16.1588 22.2421C15.874 22.0311 15.7088 21.6971 15.7088 21.3421V18.5612L9.27521 10.7003C8.93419 10.2819 8.86036 9.69832 9.09591 9.20965Z" fill="#ADAEBC" />
                                 </g>
                                 <defs>
-                                    <clipPath id="clip0_176_9647">
-                                        <path d="M0.958984 0.279572H18.959V18.2796H0.958984V0.279572Z" fill="white" />
+                                    <clipPath id="clip0_176_9645">
+                                        <path d="M8.95898 7.27957H26.959V25.2796H8.95898V7.27957Z" fill="white" />
                                     </clipPath>
                                 </defs>
                             </svg>
+
                         </div>
                         <select
                             value={filterStage}
@@ -144,12 +184,11 @@ const CandidateListings = () => {
                             <option>Salary</option>
                         </select>
                     </div>
-                </div>
 
-                {/* Candidates List */}
-                <div className="p x-8 py-6 bg-white">
+                </div>
+                <div className='"p x-8 px-5 pt-3 pb-1 bg-white border-b border-gray-200'>
                     <div className="flex justify-between items-center mb-4">
-                        <span className="text-gray-700 font-semibold text-lg ">{sortedCandidates.length} Candidates Found <input className='mx-2 ' type="checkbox" onClick={handleSelectAll} id='selectAllInp' /><label className='text-sm font-normal ' htmlFor="selectAllInp">{selectedIds.length === filteredCandidates.length ? 'Deselect All' : 'Select All'}</label></span>
+                        <span className="text-gray-700 font-semibold text-lg ">1,000 Candidates Found <input className='mx-2 ' type="checkbox" onClick={handleSelectAll} id='selectAllInp' /><label className='text-sm font-normal ' htmlFor="selectAllInp">{selectedIds.length === filteredCandidates.length ? 'Deselect All' : 'Select All'}</label></span>
                         <div className="flex gap-2">
                             <button
                                 onClick={handleDeleteSelected}
@@ -170,6 +209,11 @@ const CandidateListings = () => {
                             </select>
                         </div>
                     </div>
+                </div>
+
+                {/* Candidates List */}
+                <div className="p x-8 mt-6  px-5 py-6 bg-white">
+
                     {sortedCandidates.map(candidate => (
                         <div key={candidate.id} className="border border-gray-200 p-6 mb-4 rounded-lg flex items-start bg-white shadow-sm hover:shadow-md transition-shadow">
                             <input
@@ -232,7 +276,7 @@ const CandidateListings = () => {
                                         View Profile
                                     </button>
                                 </p>
-                             
+
                             </div>
 
 
@@ -243,8 +287,10 @@ const CandidateListings = () => {
 
 
             </div>
+            <div ref={observerRef} style={{ height: '10px',backgroundColor:"#000" }} >tt</div>
         </div>
-    </div>
+        
+    </div >
 
 
 
