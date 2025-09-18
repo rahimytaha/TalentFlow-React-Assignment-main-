@@ -15,14 +15,14 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
 import CreateJob from "./components/Dashboard/CreateJob.jsx";
 import JobDetails from "./components/Dashboard/JobDetails.jsx";
+import CandidateListings from "./components/Candidates/ListCandidates.jsx";
 
 export default function App() {
   const [open, setOpen] = useState(false);
 
   return (
     <Routes>
-      {/* Home Page */}
-      <Route
+       <Route
         path="/"
         element={
           <div className="flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
@@ -46,7 +46,7 @@ export default function App() {
       <Route
         path="/login"
         element={<LoginPage open={open} setOpen={setOpen} />}
-      />
+      /> 
       <Route
         path="/dashboard"
         element={
@@ -55,9 +55,17 @@ export default function App() {
           </PrivateRoute>
         }
       />
+      <Route
+        path="/Candidates"
+        element={
+          <PrivateRoute>
+            <CandidateListings/>
+          </PrivateRoute>
+        }
+      />
       <Route path="/pricing" element={<PricingPage />} />
-      <Route path="/create-job" element={<CreateJob />} />
-      <Route path="/edit-job/:id" element={<CreateJob mode="edit" />} />
+      <Route path="/create-job" element={<CreateJob />} /> 
+      <Route path="/edit-job/:id" element={<CreateJob mode="edit" />} /> 
       <Route path="/jobs/:id" element={<JobDetails />} />
     </Routes>
 

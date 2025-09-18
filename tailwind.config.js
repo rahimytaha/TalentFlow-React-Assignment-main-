@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors:{
+        customBlue:"#1fb6ff"
+      },
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
       },
