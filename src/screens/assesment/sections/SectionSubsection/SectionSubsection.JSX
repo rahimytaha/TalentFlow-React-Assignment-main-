@@ -1,6 +1,6 @@
 
 import { Input } from "../../../../components/ui3/input";
-import { Label } from "../../../../components/ui3/label";
+import { Label } from "../../../../components/ui3/lable";
 import { Textarea } from "../../../../components/ui3/textarea";
 
 export const SectionSubsection = () => {

@@ -6,9 +6,9 @@ import { Div3Subsection } from "./sections/Div3Subsection/Div3Subsection";
 import { Div4Subsection } from "./sections/Div4Subsection/Div4Subsection";
 import { Div5Subsection } from "./sections/Div5Subsection/Div5Subsection";
 import { DivSubsection } from "./sections/DivSubsection/DivSubsection";
-// import { DivWrapperSubsection } from "./sections/DivWrapperSubsection/DivWrapperSubsection";
+import { DivWrapperSubsection } from "./sections/DivWrapperSubsection/DivWrapperSubsection";
 import { SectionComponentNodeSubsection } from "./sections/SectionComponentNodeSubsection/SectionComponentNodeSubsection";
-// import { SectionSubsection } from "./sections/SectionSubsection/SectionSubsection";
+import { SectionSubsection } from "./sections/SectionSubsection/SectionSubsection";
 import { SectionWrapperSubsection } from "./sections/SectionWrapperSubsection/SectionWrapperSubsection";
 
 export const Assesment = () => {
@@ -22,9 +22,9 @@ export const Assesment = () => {
               {/* <AsideSubsection /> */}
               <div className=" flex">
                 <div className="  flex flex-col bg-white ">
-                  {/* <SectionSubsection /> */}
+                  <SectionSubsection />
                    <SectionWrapperSubsection />
-                  {/* <DivWrapperSubsection /> */}
+                  <DivWrapperSubsection />
                 </div>
                  <div className="flex-1 flex flex-col gap-8 ml-8">
                   <DivSubsection />

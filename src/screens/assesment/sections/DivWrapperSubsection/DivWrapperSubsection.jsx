@@ -4,7 +4,7 @@ import { Button } from "../../../../components/ui3/button";
 import { Card, CardContent } from "../../../../components/ui3/card";
 import { Checkbox } from "../../../../components/ui3/checkbox";
 import { Input } from "../../../../components/ui3/input";
-import { Label } from "../../../../components/ui3/label";
+import { Label } from "../../../../components/ui3/lable";
 import {
   RadioGroup,
   RadioGroupItem,
