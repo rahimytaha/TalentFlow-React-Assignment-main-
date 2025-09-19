@@ -51,13 +51,13 @@ const CandidateListings = () => {
 
     }, [filterOption]);
     const getApi = async () => {
-        const data = await axios.get(`http://localhost:8080/api/candidates`, { params: { searchTerm, skill, experience, page, jobTitle, lacation, salary } })
+        const data = await axios.get(`http://51.68.136.60:8080/api/candidates`, { params: { searchTerm, skill, experience, page, jobTitle, lacation, salary } })
         // setTotalCount(data.data?.total)
         setCandidates(data.data?.data)
     }
 
     const getApiFilterOption = async () => {
-        const data = await axios.get(`http://localhost:8080/api/candidatesFilterOption`)
+        const data = await axios.get(`http://51.68.136.60:8080/api/candidatesFilterOption`)
 
         setfilterOption(data.data)
         console.log(data.data)
