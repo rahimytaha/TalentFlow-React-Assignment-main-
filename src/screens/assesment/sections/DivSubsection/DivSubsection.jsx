@@ -59,7 +59,7 @@ export const DivSubsection = () => {
         </nav>
       </header>
 
-      <Card className="bg-white rounded-lg border border-solid">
+      <Card className="bg-white p-3  rounded-lg border border-solid">
         <CardContent className="p-[25px]">
           <h2 className="[font-family:'Roboto',Helvetica] font-semibold text-gray-800 text-lg tracking-[0] leading-[normal] mb-4">
             Assessment Overview

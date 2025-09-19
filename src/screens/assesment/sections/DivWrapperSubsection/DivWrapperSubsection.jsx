@@ -26,8 +26,8 @@ export const DivWrapperSubsection = () => {
   ];
 
   return (
-    <div className="h-[874px] flex flex-col border-b border-solid border">
-      <div className="ml-6 w-[672px] mt-6 flex gap-[308px] border-0 border-none">
+    <div className="h-[874px]  flex flex-col border-b border-solid border">
+      <div className="px-6 w-full flex justify-between  mt-6  gap-[308px] border-0 border-none">
         <div className="mt-[6.5px] w-[173px] h-7 text-gray-800 text-lg leading-7 whitespace-nowrap [font-family:'Roboto_Mono',Helvetica] font-normal tracking-[0]">
           Question Builder
         </div>
@@ -56,15 +56,11 @@ export const DivWrapperSubsection = () => {
         </div>
 
         <div className="h-[157px] flex flex-col rounded-lg border border-solid border-gray-300">
-          <img
-            className="ml-px w-[670px] h-[49px] mt-px"
-            alt="Div"
-            src="/div-2.svg"
-          />
+    
 
-          <div className="ml-px w-[670px] border-0 border-none flex bg-white overflow-hidden">
+          <div className="ml-px  border-0 border-none flex bg-white overflow-hidden">
             <Textarea
-              className="mt-4 w-[670px] h-[100px] ml-4 [font-family:'Roboto_Mono',Helvetica] text-[#adaebc] font-normal text-base tracking-[0] leading-6 border-none resize-none"
+              className="mt- outline-none w-full  h-[100px] ml-4 [font-family:'Roboto_Mono',Helvetica] text-[#adaebc] font-normal text-base tracking-[0] leading-6 border-none resize-none"
               defaultValue="What is the difference between let, const, and var in JavaScript?"
             />
           </div>
@@ -95,7 +91,7 @@ export const DivWrapperSubsection = () => {
                 </div>
               </div>
 
-              <img
+              {/* <img
                 className="mt-[13px] w-3.5 h-6"
                 alt="Button"
                 src="/button-1.svg"
@@ -105,7 +101,7 @@ export const DivWrapperSubsection = () => {
                 className="mt-[13px] w-3.5 h-6"
                 alt="Button"
                 src="/button-3.svg"
-              />
+              /> */}
             </div>
           ))}
         </RadioGroup>
@@ -159,7 +155,7 @@ export const DivWrapperSubsection = () => {
           </Label>
         </div>
 
-        <Card className="h-[85px] bg-gray-50 rounded-lg border border-solid border">
+        <Card className="h-[85px] bg-gray-50 rounded-lg border border-solid p-3 ">
           <CardContent className="flex flex-col gap-2 p-[13px]">
             <div className="w-[646px] flex border-0 border-none">
               <div className="w-[228px] h-5 [font-family:'Roboto_Mono',Helvetica] font-normal text-gray-600 text-sm tracking-[0] leading-5 whitespace-nowrap">
@@ -167,7 +163,7 @@ export const DivWrapperSubsection = () => {
               </div>
             </div>
 
-            <div className="w-[646px] flex gap-2 border-0 border-none">
+            <div className="w-[646px] flex gap-2 border-0  border-none">
               <Select defaultValue="previous-question">
                 <SelectTrigger className="w-[181px] h-[31px] gap-1 rounded bg-white border border-solid border-gray-300">
                   <SelectValue>
@@ -209,10 +205,10 @@ export const DivWrapperSubsection = () => {
         </Card>
       </div>
 
-      <div className="ml-6 w-[672px] mt-6 flex gap-[245.5px] border-0 border-none">
+      <div className="ml-6 pb-3  w-[672px] mt-6 flex gap-[245.5px] border-0 border-none">
         <Button
           variant="ghost"
-          className="mt-[9px] w-[166.03px] flex gap-2 border-0 border-none h-auto p-0"
+          className="mt-[9px] mr-3  w-[166.03px] flex gap-2 border-0 border-none h-auto p-0"
         >
           <Trash2Icon className="mt-px w-3.5 h-[21px]" />
           <div className="mt-px w-[150px] h-6 [font-family:'Roboto_Mono',Helvetica] font-normal text-red-600 text-base text-center tracking-[0] leading-[normal]">

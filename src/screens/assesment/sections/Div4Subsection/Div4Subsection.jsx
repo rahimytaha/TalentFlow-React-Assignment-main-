@@ -6,7 +6,7 @@ import { Input } from "../../../../components/ui3/input";
 
 export const Div4Subsection = ()=> {
   return (
-    <Card className="w-full max-w-[1056px] h-[244px] bg-white rounded-lg border border-solid border-gray-200">
+    <Card className="w-full p-3 max-w-[1056px] h-[244px] bg-white rounded-lg border border-solid border-gray-200">
       <CardContent className="p-0">
         <div className="ml-[25px] w-[1006px] mt-[25px] flex gap-[758.9px] border-0 border-none">
           <div className="w-[209.14px] flex gap-3 border-0 border-none">
@@ -30,7 +30,7 @@ export const Div4Subsection = ()=> {
             </div>
           </div>
 
-          <MoreHorizontalIcon className="w-[38px] h-6 text-gray-400" />
+          {/* <MoreHorizontalIcon className="w-[38px] h-6 text-gray-400" /> */}
         </div>
 
         <div className="ml-[25px] w-[1006px] h-[118px] flex flex-col border-0 border-none">

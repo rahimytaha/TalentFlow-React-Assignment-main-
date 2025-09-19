@@ -4,7 +4,7 @@ import { Textarea } from "../../../../components/ui3/textarea";
 
 export const Div3Subsection = ()=> {
   return (
-    <Card className="w-full max-w-[1056px] h-[353px] bg-white rounded-lg border border-solid border-gray-200">
+    <Card className="w-full max-w-[1056px] h-[353px] bg-white p-3 rounded-lg border border-solid border-gray-200">
       <CardContent className="p-0">
         <div className="ml-[25px] w-[1006px] mt-[25px] flex gap-[795.7px] border-0 border-none">
           <div className="w-[172.31px] flex gap-3 border-0 border-none">
@@ -25,7 +25,7 @@ export const Div3Subsection = ()=> {
             </div>
           </div>
 
-          <img className="w-[38px] h-6" alt="Div" src="/div.svg" />
+          {/* <img className="w-[38px] h-6" alt="Div" src="/div.svg" /> */}
         </div>
 
         <div className="ml-[25px] w-[1006px] h-[227px] flex flex-col border-0 border-none">

@@ -15,7 +15,7 @@ export const SectionComponentNodeSubsection = () => {
   ];
 
   return (
-    <Card className="w-full max-w-[1056px] h-[390px] bg-white rounded-lg border border-solid">
+    <Card className="w-full p-3 max-w-[1056px] h-[390px] bg-white rounded-lg border border-solid">
       <CardContent className="p-0">
         <div className="ml-[25px] w-[1006px] mt-[25px] flex gap-[757.4px] border-0 border-none">
           <div className="w-[210.56px] flex gap-3 border-0 border-none">
@@ -39,7 +39,7 @@ export const SectionComponentNodeSubsection = () => {
             </div>
           </div>
 
-          <img className="w-[38px] h-6" alt="Div" src="/div.svg" />
+          {/* <img className="w-[38px] h-6" alt="Div" src="/div.svg" /> */}
         </div>
 
         <div className="ml-[25px] w-[1006px] h-[264px] flex flex-col gap-4 border-0 border-none">
@@ -54,21 +54,18 @@ export const SectionComponentNodeSubsection = () => {
             {questionOptions.map((option) => (
               <div
                 key={option.id}
-                className={`w-[1006px] h-[50px] flex items-center gap-3 rounded-md border border-solid ${
+                className={`w-[1006px] p-1  h-[50px] flex items-center gap-3 rounded-md border border-solid ${
                   option.selected
-                    ? "bg-green-50 border-green-300"
+                    ? "border-gray-300"
                     : "border-gray-300"
                 }`}
               >
                 <div className="ml-[13px] flex items-center">
                   {option.selected ? (
-                    <div className="w-[19px] h-[19px] flex items-center justify-center">
-                      <img
-                        className="w-[19px] h-[23px]"
-                        alt="Selected"
-                        src="/input-3.svg"
-                      />
-                    </div>
+                    <RadioGroupItem
+                      value={option.id}
+                      className="w-4 h-4 rounded-full border-[0.5px] border-solid border-black"
+                    />
                   ) : (
                     <RadioGroupItem
                       value={option.id}
@@ -82,13 +79,7 @@ export const SectionComponentNodeSubsection = () => {
                     {option.label}
                   </div>
 
-                  {option.selected && (
-                    <img
-                      className="w-3.5 h-6 mr-[13px]"
-                      alt="Correct"
-                      src="/i-8.svg"
-                    />
-                  )}
+            
                 </div>
               </div>
             ))}

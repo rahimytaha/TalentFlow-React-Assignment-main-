@@ -5,7 +5,7 @@ import { Input } from "../../../../components/ui3/input";
 
 export const Div2Subsection = () => {
   return (
-    <Card className="w-full max-w-[1056px] h-[244px] bg-white rounded-lg border border-solid border-gray-200">
+    <Card className="w-full p-3 max-w-[1056px] h-[244px] bg-white rounded-lg border border-solid border-gray-200">
       <CardContent className="p-0">
         <div className="ml-[25px] w-[1006px] mt-[25px] flex justify-between items-start">
           <div className="flex gap-3 items-start">
@@ -26,7 +26,7 @@ export const Div2Subsection = () => {
             </div>
           </div>
 
-          <img className="w-[38px] h-6" alt="Div" src="/div.svg" />
+          {/* <img className="w-[38px] h-6" alt="Div" src="/div.svg" /> */}
         </div>
 
         <div className="ml-[25px] w-[1006px] h-[118px] flex flex-col mt-4">
