@@ -8,7 +8,7 @@ export default function Sidebar() {
                 <nav className="space-y-4">
 
                     <NavLink
-                        to={"/jobs"}
+                        to={"/dashboard"}
                         className={({ isActive, isPending }) => `flex ${isActive ? " bg-indigo-100 text-indigo-600 hover:bg-indigo-200" : " text-gray-700 hover:text-indigo-600 "} items-center rounded-md  py-2 px-1 gap-2  font-medium  leading-7`}
                     >
                         <Briefcase size={18} /> Jobs
