@@ -10,8 +10,8 @@ import('../public/browser').then(({ worker }) => {
 });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    {/* <App /> */}
-    <Assesment/>
+    <App />
+    {/* <Assesment/> */}
     
   </BrowserRouter>
 );

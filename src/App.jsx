@@ -18,6 +18,7 @@ import JobDetails from "./components/Dashboard/JobDetails.jsx";
 import CandidateListings from "./components/Candidates/ListCandidates.jsx";
 import {CandidateListingsSection} from './screens/CandidateProfile/sections/CandidateListingsSection/CandidateListingsSection.jsx'
 import { CandidateListingsSubsection } from "./screens/CandidateListingsSubsection/CandidateListingsSubsection.jsx";
+import { Assesment } from "./screens/assesment/Assesment.jsx";
 export default function App() {
   const [open, setOpen] = useState(false);
 
@@ -71,7 +72,16 @@ export default function App() {
             <CandidateListings />
           </PrivateRoute>
         }
-      /><Route
+      />
+        <Route
+        path="/Assessments"
+        element={
+          <PrivateRoute>
+            <Assesment />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/Candidates/Manage"
         element={
           <PrivateRoute>
