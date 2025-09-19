@@ -1,9 +1,9 @@
 import React from "react";
-import { Badge } from "../../../../components/ui/badge";
-import { Card, CardContent } from "../../../../components/ui/card";
-import { Input } from "../../../../components/ui/input";
+import { Badge } from "../../../../components/ui3/badge";
+import { Card, CardContent } from "../../../../components/ui3/card";
+import { Input } from "../../../../components/ui3/input";
 
-export const Div2Subsection = (): JSX.Element => {
+export const Div2Subsection = () => {
   return (
     <Card className="w-full max-w-[1056px] h-[244px] bg-white rounded-lg border border-solid border-gray-200">
       <CardContent className="p-0">

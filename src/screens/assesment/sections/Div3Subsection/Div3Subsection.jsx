@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, CardContent } from "../../../../components/ui/card";
-import { Textarea } from "../../../../components/ui/textarea";
+import { Card, CardContent } from "../../../../components/ui3/card";
+import { Textarea } from "../../../../components/ui3/textarea";
 
-export const Div3Subsection = (): JSX.Element => {
+export const Div3Subsection = ()=> {
   return (
     <Card className="w-full max-w-[1056px] h-[353px] bg-white rounded-lg border border-solid border-gray-200">
       <CardContent className="p-0">

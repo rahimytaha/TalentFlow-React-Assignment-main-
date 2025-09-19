@@ -1,10 +1,10 @@
 import { PlusIcon } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Div1Subsection } from "./sections/Div1Subsection/Div1Subsection";
-// import { Div2Subsection } from "./sections/Div2Subsection/Div2Subsection";
-// import { Div3Subsection } from "./sections/Div3Subsection/Div3Subsection";
-// import { Div4Subsection } from "./sections/Div4Subsection/Div4Subsection";
-// import { Div5Subsection } from "./sections/Div5Subsection/Div5Subsection";
+import { Div2Subsection } from "./sections/Div2Subsection/Div2Subsection";
+import { Div3Subsection } from "./sections/Div3Subsection/Div3Subsection";
+import { Div4Subsection } from "./sections/Div4Subsection/Div4Subsection";
+import { Div5Subsection } from "./sections/Div5Subsection/Div5Subsection";
 import { DivSubsection } from "./sections/DivSubsection/DivSubsection";
 // import { DivWrapperSubsection } from "./sections/DivWrapperSubsection/DivWrapperSubsection";
 import { SectionComponentNodeSubsection } from "./sections/SectionComponentNodeSubsection/SectionComponentNodeSubsection";
@@ -31,10 +31,10 @@ export const Assesment = () => {
                   <div className="flex flex-col gap-6">
                      <SectionComponentNodeSubsection />
                    <Div1Subsection />
-                    {/* <Div2Subsection />
-                    <Div3Subsection />
-                    <Div4Subsection />
-                    <Div5Subsection /> */}
+                     <Div2Subsection />
+                   <Div3Subsection />
+                     <Div4Subsection />
+                    <Div5Subsection /> 
                   </div>
                   <div className=" flex justify-center">
                     <Button

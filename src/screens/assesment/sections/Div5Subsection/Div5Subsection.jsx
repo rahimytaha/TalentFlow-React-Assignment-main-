@@ -1,10 +1,10 @@
 import { MoreHorizontalIcon, UploadIcon } from "lucide-react";
 import React from "react";
-import { Badge } from "../../../../components/ui/badge";
-import { Button } from "../../../../components/ui/button";
-import { Card, CardContent } from "../../../../components/ui/card";
+import { Badge } from "../../../../components/ui3/badge";
+import { Button } from "../../../../components/ui3/button";
+import { Card, CardContent } from "../../../../components/ui3/card";
 
-export const Div5Subsection = (): JSX.Element => {
+export const Div5Subsection = ()=> {
   return (
     <Card className="w-full max-w-[1056px] h-[342px] bg-white rounded-lg border border-solid">
       <CardContent className="p-0">
