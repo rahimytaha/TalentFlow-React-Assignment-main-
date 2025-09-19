@@ -343,7 +343,7 @@ export const CandidateListingsSubsection = () => {
             <Sidebar />
             <div className="flex-1 flex flex-col">
                 <Header />
-                <div className="flex flex-col w-full h-full bg-gray-50 relative">
+                <div className="flex mt-16 flex-col w-full h-full bg-gray-50 relative">
 
 
                     <div className="flex flex-1">
