@@ -39,11 +39,11 @@ const [data,setData]=useState()
   useEffect(() => { getTimeLine();getData(); }, [])
 
   const getTimeLine = async () => {
-    const data = await axios.get(`http://vps-979f2e11.vps.ovh.net:8080/api/candidate/${id}/timeline`)
+    const data = await axios.get(`http://localhost:8080/api/candidate/${id}/timeline`)
     Array.isArray(data.data) && setTimelineEvents(data.data)
   }
     const getData = async () => {
-    const data = await axios.get(`http://vps-979f2e11.vps.ovh.net:8080/api/candidateById/${id}`)
+    const data = await axios.get(`http://localhost:8080/api/candidateById/${id}`)
     data.data && setData(data.data)
   }
 
