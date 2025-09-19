@@ -4,7 +4,7 @@ import Header from '../Dashboard/Header';
 import ImageHeader from './image.png'
 import UserIcon from '../../assets/images/userIcon.png'
 import axios from 'axios';
-import {  NavLink } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 
 const stages = ['applied', 'screen', 'tech', 'offer', 'hired', 'rejected'];
 
@@ -12,6 +12,7 @@ const STORAGE_KEY_CANDIDATES = 'talentflow_candidates';
 
 
 const CandidateListings = () => {
+    const navigate = useNavigate()
     const [candidates, setCandidates] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterOption, setfilterOption] = useState({ "jobTitle": [], "skills": [], "location": [], "salary": [] });
@@ -218,7 +219,7 @@ const CandidateListings = () => {
                             >
                                 Delete Selected
                             </button>
-                            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ml-2">
+                            <button onClick={()=>navigate("/Candidates/Manage")} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ml-2">
                                 Manage Candidates
                             </button>
                             <span className='ml-6 mr-2 py-2'>Sort by:</span>
