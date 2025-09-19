@@ -1,24 +1,24 @@
 import { PlusIcon, Trash2Icon } from "lucide-react";
 import React from "react";
-import { Button } from "../../../../components/ui/button";
-import { Card, CardContent } from "../../../../components/ui/card";
-import { Checkbox } from "../../../../components/ui/checkbox";
-import { Input } from "../../../../components/ui/input";
-import { Label } from "../../../../components/ui/label";
+import { Button } from "../../../../components/ui3/button";
+import { Card, CardContent } from "../../../../components/ui3/card";
+import { Checkbox } from "../../../../components/ui3/checkbox";
+import { Input } from "../../../../components/ui3/input";
+import { Label } from "../../../../components/ui3/label";
 import {
   RadioGroup,
   RadioGroupItem,
-} from "../../../../components/ui/radio-group";
+} from "../../../../components/ui3/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../../../components/ui/select";
-import { Textarea } from "../../../../components/ui/textarea";
+} from "../../../../components/ui3/select";
+import { Textarea } from "../../../../components/ui3/textarea";
 
-export const DivWrapperSubsection = (): JSX.Element => {
+export const DivWrapperSubsection = () => {
   const answerOptions = [
     "let and const are block-scoped, var is function-scoped",
     "They are all the same",

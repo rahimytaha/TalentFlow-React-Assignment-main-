@@ -1,9 +1,9 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import React from "react";
-import { Button } from "../../../../components/ui/button";
-import { Card, CardContent } from "../../../../components/ui/card";
+import { Button } from "../../../../components/ui3/button";
+import { Card, CardContent } from "../../../../components/ui3/card";
 
-export const DivSubsection = (): JSX.Element => {
+export const DivSubsection = () => {
   const statisticsData = [
     {
       value: "12",

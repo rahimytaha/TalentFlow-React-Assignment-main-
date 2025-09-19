@@ -1,10 +1,10 @@
 import { CheckIcon, MoreHorizontalIcon } from "lucide-react";
 import React from "react";
-import { Badge } from "../../../../components/ui/badge";
-import { Card, CardContent } from "../../../../components/ui/card";
-import { Checkbox } from "../../../../components/ui/checkbox";
+import { Badge } from "../../../../components/ui3/badge";
+import { Card, CardContent } from "../../../../components/ui3/card";
+import { Checkbox } from "../../../../components/ui3/checkbox";
 
-export const Div1Subsection = (): JSX.Element => {
+export const Div1Subsection = () => {
   const answerOptions = [
     {
       id: "var",
@@ -37,7 +37,7 @@ export const Div1Subsection = (): JSX.Element => {
   ];
 
   return (
-    <Card className="w-[1056px] h-[390px] bg-white rounded-lg border border-solid border-gray-200">
+        <Card className="w-[1056px] h-[390px] bg-white rounded-lg border border-solid border-gray-200">
       <CardContent className="p-0">
         <div className="ml-[25px] w-[1006px] mt-[25px] flex gap-[743.8px] border-0 border-none">
           <div className="w-[224.22px] flex gap-3 border-0 border-none">
